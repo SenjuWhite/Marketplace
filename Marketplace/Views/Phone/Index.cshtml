@@ -1,0 +1,145 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model PhoneViewModel
+<div class="page">
+
+<div class="page-info">
+@foreach (var obj in Model.Phones)
+{
+    <div class="container mt-5 " id="@obj.Id">
+        <div class="row model-short-info">
+            <div class="col-md-2"  >
+                <a href="https://www.google.com/search?q= @obj.Model" target="_blank">
+                <img src="@obj.Image" class="img-fluid img-border" alt="@obj.Model" title="@obj.Model">
+                </a>
+            </div>
+            <div class="col-md-5 border-left  p-3">
+               <h2> <a href="#" class="text-decoration-none" title="@obj.Model">@obj.Model</a> </h2>
+                <div class="border-top mt-3 pt-3 h5 text-dark ">
+                    @if (obj.Screen != "unknown")
+                    {
+                        <span style="color:slategrey">Екран:</span> @obj.Screen.Replace("&nbsp;", " ").Replace("Екран:","")
+                        <br>
+                    }
+                    @if (obj.Camera != "unknown")
+                    {
+                        <span style="color:slategrey">Камера:</span> @obj.Camera.Replace("&nbsp;", " ").Replace("Камера:","")
+                        <br>
+                    }
+                    @if (obj.Memory != "unknown")
+                    {
+                        <span style="color:slategrey">Пам'ять:</span> @obj.Memory <span>ГБ</span>
+                    <br>
+                    }
+                    @if (obj.Processor != "unknown")
+                    {
+                        <span style="color:slategrey">Процесор:</span> @obj.Processor
+                        <br>
+                    }
+                    @if (obj.RAM != "unknown")
+                    {
+                        <span style="color:slategrey">ОЗП:</span> @obj.RAM
+                        <br>
+                    }
+                    @if (obj.Battery != "unknown")
+                    {
+                        <span style="color:slategrey">Акумулятор:</span> @obj.Battery.Replace("&nbsp;", " ").Replace("Акумулятор:","")
+                        <br>
+                    }
+                    @if (obj.Case != "unknown")
+                    {
+                        <span style="color:slategrey">Корпус:</span> @obj.Case.Replace("&nbsp;", " ").Replace("Корпус:","")
+                        <br>
+                    }
+
+                </div>
+            </div>
+            <div class="col-md-4 border-left p-3">
+                <h2>Ціни</h2>
+                <div class="border-top mt-3 pt-3 h6 text-dark " style="line-height:1">
+                    <table class="table table-borderless ">
+                @foreach(var store in Model.Stores)
+                {
+                    if (obj.Id == store.PhoneId)
+                    {
+                        <tr>
+                                    <td>
+                                        <a href="@store.PhoneLink" class="text-decoration-none price-link" target="_blank">@store.StoreName </a>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </td>
+                                    <td>
+                                        <a href="@store.PhoneLink" class="text-decoration-none" target="_blank"> @store.Price грн.</a>
+                                    </td>
+
+                        </tr>
+                    }
+                   
+                }
+                </table>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <p></p>
+    
+}
+@{
+    var prevDisabled = !Model.Phones.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.Phones.HasNextPage ? "disabled" : "";
+}
+<div class="pagination d-flex  justify-content-center container">
+        @{
+        <a asp-action="Index" asp-route-pageNumber="@(Model.Phones.PageIndex-1)" class="btn btn-outline-primary m-1 @prevDisabled"><i class="fa-solid fa-chevron-left"></i></a>
+
+        
+            var maxPageNumbers = 4;
+
+            var startPage = Math.Max(Model.Phones.PageIndex - maxPageNumbers / 2, 1);
+            var endPage = Math.Min(startPage + maxPageNumbers - 1, Model.Phones.TotalPages);
+
+            if (startPage > 1)
+            {
+            <a asp-action="Index" asp-route-pageNumber="1" class="btn btn-outline-warning m-1">1</a>
+                if (startPage > 2)
+                {
+                <a asp-action="Index" asp-route-pageNumber="@(Model.Phones.PageIndex-maxPageNumbers)" class="btn btn-outline-warning m-1"> <i class="fa-solid fa-ellipsis"></i></a>
+                }
+            }
+
+            for (var i = startPage; i <= endPage; i++)
+            {
+                var isActive = (i == Model.Phones.PageIndex) ? "active" : "";
+            <a asp-action="Index" asp-route-pageNumber="@i" class="btn btn-outline-warning @isActive m-1">@i</a>
+            }
+
+            if (endPage < Model.Phones.TotalPages)
+            {
+                if (endPage < Model.Phones.TotalPages - 1)
+                {
+                <a asp-action="Index" asp-route-pageNumber="@(Model.Phones.PageIndex+maxPageNumbers)" class="btn btn-outline-warning m-1"> <i class="fa-solid fa-ellipsis"></i></a>
+                }
+            <a asp-action="Index" asp-route-pageNumber="@Model.Phones.TotalPages" class="btn btn-outline-warning m-1">@Model.Phones.TotalPages</a>
+            }
+        <a asp-action="Index" asp-route-pageNumber="@(Model.Phones.PageIndex+1)" class="btn btn-outline-primary m-1 @nextDisabled"><i class="fa-solid fa-chevron-right"></i></a>
+
+        }
+</div>
+
+</div>
+    <div class="filters row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+            <form method="get" action="/Phones/Index">
+            <div>
+                <label>Пам'ять'</label>
+                <div>
+                    <input type="checkbox" 
+                </div>
+            </div>    
+            
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.model-short-info{
+   
+    height:350px;
+    
+}
+.model-short-info:hover {
+background-color: #e0e0e0;
+border-bottom:1px solid gray;
+        
+}
+    .model-short-info:hover * {
+        background-color: #e0e0e0;
+    }
+
+.border-left {
+    border-left: 1px solid gray ;
+}
+.img-border {
+    border: 3px solid white;
+    border-radius: 15px;
+    
+}
+    .img-border:hover {
+        box-shadow: 0 0 0 1px gray;
+    }
+.price-link {
+    color: var(--bs-blue);
+}
+    .price-link:hover {
+        color: var(--bs-cyan);
+    }
+ .page {
+     width:1800px;
+     display:flex;
+ }
+ .page-info{
+     display:inline-block;
+ }
+.filters {
+    flex-grow:1;
+
+}
