@@ -1,6 +1,7 @@
 ﻿using Marketplace.Data;
 using Marketplace.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Marketplace.Controllers
 {
@@ -11,11 +12,19 @@ namespace Marketplace.Controllers
         {
             _db = db;
         }
-        public IActionResult Index(int? pageNumber)
+        
+        public IActionResult Index(int? pageNumber, string[] mem)
         {
+            var filteredPhones = _db.PhoneInfo.AsQueryable();
+            if (!mem.IsNullOrEmpty())
+            {
+                filteredPhones = filteredPhones.Where(phone => mem.Contains(phone.Memory));
+            }
             int pageSize = 20;
             PhoneViewModel model = new PhoneViewModel();
-            model.Phones = PaginatedList<Phone>.Create(_db.PhoneInfo.ToList(), pageNumber ?? 1, pageSize);
+            model.Filters.Memory = _db.PhoneInfo.Select(phone => phone.Memory).Where(memory => memory != "unknown").Distinct().ToList();
+            model.SelectedMemory = mem;
+            model.Phones = PaginatedList<Phone>.Create(filteredPhones.ToList(), pageNumber ?? 1, pageSize);
             model.Stores = _db.StoreInfo;
             return View(model);
         }
