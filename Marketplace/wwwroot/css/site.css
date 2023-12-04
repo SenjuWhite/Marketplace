@@ -23,6 +23,7 @@ body {
 .model-short-info{
    
     height:350px;
+    width:1140px;
     
 }
 .model-short-info:hover {
@@ -60,5 +61,38 @@ border-bottom:1px solid gray;
  }
 .filters {
     flex-grow:1;
+
+}
+.filter-options {
+    padding-right:40px;
+    padding-top:10px;
+}
+.filter-table {
+
+    margin-bottom: 20px;
+}
+.filter-div {
+    
+    border-bottom: 1px solid gray;
+}
+
+.form-control::-webkit-outer-spin-button,
+.form-control::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.w-35 {
+    width:35%;
+}
+.right-align {
+    position: absolute;
+    right: 0;
+    width:335px;
+    margin-right:50px;
+}
+.search-form{
+position:absolute;
+left:400px;
+
 
 }

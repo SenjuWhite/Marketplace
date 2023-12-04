@@ -9,7 +9,7 @@
         public string? Screen { get; set; }
         public string? Size { get; set; } = "unknown";
         public string? Refresh_Rate { get; set; } = "unknown";
-
+        public string? Brand { get; set; }
 
         public string? Camera { get; set; }
         public string? MainCameraMP { get; set; } = "unknown";

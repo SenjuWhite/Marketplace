@@ -11,41 +11,20 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg py-3 bg-primary" data-bs-theme="dark">
+        <nav class="navbar navbar-expand-lg py-3 bg-primary" data-bs-theme="light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">MobileMagnet</a>
+                <a class="navbar-brand" href="/Phone/Index"><img style="width:180px" src="\photos\logo4.png" /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarColor01">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">
-                                Home
-                                <span class="visually-hidden">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Phone/Index">Телефони</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
-                            </div>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
+                    <a class="nav-link nav-item navbar-nav me-auto " href="/Phone/Index">Телефони</a>
+                    <form method="get" class="d-flex w-50 search-form" action="/Phone/SearchResults">
+                        <input class="form-control me-sm-2" type="search" placeholder="Пошук" name="query">
+                        <button class="btn btn-secondary my-2 my-sm-0 d-flex" type="submit" fdprocessedid="siejuv">Знайти<i class="fa-solid fa-magnifying-glass p-2"></i></button>
+                    </form>
+                  
+                  
                 </div>
             </div>
         </nav>
@@ -57,11 +36,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Marketplace - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+  
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
